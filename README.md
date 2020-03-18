@@ -31,35 +31,29 @@ ctrl-C
 docker-compose stop 
 ```
 
-## To wipe the drupal containers and start clean:
+## editing a theme file
 
-```
-docker-compose down
-docker volume prune
-docker network prune
-docker system prune
-docker-compose up --build
-```
+Revise the files in drupal8_themes.  It is a local folder synced to the container's /drupal_app/web/themes/contrib
 
-## To edit a theme file:
+## editing a module
 
-Revise the files in drupal8_themes.  It is a local folder synced to the container's /drupal_app/web/themes/contrib .
+Revise the files in drupal8_modules.  It is the home to our custom modules.  The folder syncs to the container's /drupal_app/web/modules
 
-## To export config changes to drupal_sync/:
+## exporting config changes to drupal_sync/:
 
 `docker-compose exec webapp drush config-export -y`
 
-## To import config settings from drupal_sync/:
+## importing config settings from drupal_sync/:
 
 `docker-composer exec webapp drush config-import -y`
 
-## To make changes to db & push to production:
+## making changes to db & pushing to production:
 
 Reasoning:  Full production db dump is at some permanent file location.  Copy the production sql dump to db_shared, do only revisions to drupal that you want on production.  When finished, we will dump the database to an sqldump.
 
 Then the sqldump replaces the full production dump in the permanent location & it also gets ingested to production mysql.  Ingest to production is the same as ingest to test.
 
-## To export your local database
+## exporting your local database
 
 1) `docker-compose exec webapp drush sql-dump --result-file=/{todays_date}.sql`
 1) copy the file from the container to the host os using `docker cp /{todays_date}.sql .`
@@ -69,12 +63,24 @@ inside server (on maintenance mode):
 `cp {production sql dump} ./db_shared
 docker-compose down db && docker-compose up db`
 
-# rebuild the drupal cache
+## rebuilding the drupal cache
 
 `docker-compose exec webapp drush cache-rebuild`
 ⋅⋅⋅It's a good habit -- resolves most problems.
 
-# some docker commands 
+## wiping the containers and starting clean:
+
+```
+docker-compose down
+docker volume prune
+docker network prune
+docker system prune
+docker-compose up --build
+```
+
+## some commands
+
+docker 
 
     ps    {show active containers}
 
@@ -97,9 +103,13 @@ docker-compose
         -d  {in detached mode}
         --build {make the docker image if it doesn't yet exist}
 
-    down    {kill & remove the containers,
+    stop    {halt the containers but keeps them intact}
+
+    down    {halt & remove the containers,
              preserves volumes and images}
 
     exec container_name /bin/bash {or other program from inside the container}
 
     logs     {show logs}
+
+        -f  {follow the log tail}
