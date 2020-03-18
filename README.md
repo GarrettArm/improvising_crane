@@ -6,7 +6,7 @@ A Drupal8 build for randall library
 2) copy {path to drupal8_sandbox_db.sql} to ./db_shared/
 3) build the app & watch for completion
 
-   ```
+```
 docker-compose up --build -d
 docker-compose exec webapp chown -R www-data:www-data /drupal_sync /drupal_app/web/modules /drupal_app/web/themes
 docker-compose exec webapp drush cache-rebuild
