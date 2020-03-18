@@ -4,15 +4,15 @@ A Drupal8 build for randall library
 
 1) change the passwords in the file ".env"
 2) copy {path to drupal8_sandbox_db.sql} to ./db_shared/
-3)
-⋅⋅⋅```
+3) build the app & watch for completion
+   ```
 docker-compose up --build -d
 docker-compose exec webapp chown -R www-data:www-data /drupal_sync /drupal_app/web/modules /drupal_app/web/themes
 docker-compose exec webapp drush cache-rebuild
 docker-compose logs -f
 ```
-⋅⋅⋅wait until the db container reports "ready for connections".  Exit log screen with `Ctrl-C`.
-⋅⋅⋅check that the database loaded by looking at the site in a browser.  It will error out until the database finishes loading.
+   wait until the db container reports "ready for connections".  Exit log screen with `Ctrl-C`.
+   check that the database loaded by looking at the site in a browser.  It will error out until the database finishes loading.
 
 4)`docker-compose exec webapp drush config-import -y`
 
