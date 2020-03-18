@@ -1,6 +1,6 @@
 A Drupal8 build for randall library
 
-# Running the dev box
+## running the dev box
 
 1) change the passwords in the file ".env"
 2) copy {path to drupal8_sandbox_db.sql} to ./db_shared/
@@ -20,7 +20,7 @@ docker-compose logs -f
 
 See the app at localhost:5000
 
-## To stop the containers
+## stopping the dev box
 
 ```
 ctrl-C
