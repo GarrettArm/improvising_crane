@@ -8,10 +8,10 @@ All the docker-compose commands must be run from this folder.
 2) copy {path to drupal8_sandbox_db.sql} to ./db_shared/
 3) build the app & watch for completion.  run each command separately.
 
-`docker-compose up --build -d`
+`docker-compose up -d`
 `docker-compose logs -f`
 
-   wait until the db container logs say "X Plugin ready for connections".  Exit log screen with `Ctrl-C`.
+   wait until the db container logs say "MySQL init process done. Ready for start up."  Exit log screen with `Ctrl-C`.
 
 `docker-compose exec webapp chown -R www-data:www-data /drupal_sync /drupal_app/web/modules /drupal_app/web/themes`
 `docker-compose exec webapp drush config-import -y`
