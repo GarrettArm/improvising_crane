@@ -6,17 +6,17 @@ All the docker-compose commands must be run from this folder.
 
 1) change the passwords in the file ".env"
 2) copy {path to drupal8_sandbox_db.sql} to ./db_shared/
-3) build the app & watch for completion
+3) build the app & watch for completion.  run each command separately.
 
-```
-docker-compose up --build -d
-docker-compose exec webapp chown -R www-data:www-data /drupal_sync /drupal_app/web/modules /drupal_app/web/themes
-docker-compose exec webapp drush cache-rebuild
-docker-compose exec webapp drush config-import -y
-docker-compose logs -f
-```
+`docker-compose up --build -d`
+`docker-compose logs -f`
 
-   wait until the db container logs say "ready for connections".  Exit log screen with `Ctrl-C`.
+   wait until the db container logs say "X Plugin ready for connections".  Exit log screen with `Ctrl-C`.
+
+`docker-compose exec webapp chown -R www-data:www-data /drupal_sync /drupal_app/web/modules /drupal_app/web/themes`
+`docker-compose exec webapp drush config-import -y`
+`docker-compose exec webapp drush cache-rebuild`
+   
    check that the database loaded by looking at the site in a browser.  It will error out until the database finishes loading.
 
 See the app at localhost:5150
@@ -33,11 +33,11 @@ docker-compose stop
 
 ## editing a theme file
 
-Revise the files in drupal8_themes.  The folder syncs to the container's /drupal_app/web/themes/contrib
+Revise the files in ./themes.  The folder syncs to the container's /drupal_app/web/themes/contrib
 
 ## editing a module
 
-Revise the files in drupal8_modules.  It is the home to our custom modules.  The folder syncs to the container's /drupal_app/web/modules
+Revise the files in ./modules.  It is the home to our custom modules.  The folder syncs to the container's /drupal_app/web/modules
 
 ## exporting config from container to drupal_sync/:
 

@@ -13,7 +13,7 @@ networks:
 services:
   nginx:
     image: nginx:1.16.0
-    container_name: nginx2
+    container_name: nginx
     environment:
       NGINX_SERVER_ROOT: /drupal_app/web
     volumes:
@@ -29,12 +29,12 @@ services:
 
   webapp:
     image: localhost:5999/drupal8
-    container_name: webapp2
+    container_name: webapp
     env_file: .env
     volumes:
-      - ./drupal8_sync:/drupal_sync
-      - ./drupal8_themes:/drupal_app/web/themes/contrib
-      - ./drupal8_modules:/drupal_app/web/modules
+      - ./sync:/drupal_sync
+      - ./themes:/drupal_app/web/themes/contrib
+      - ./modules:/drupal_app/web/modules
       - drupal_data:/drupal_app
     networks:
       - db_network
@@ -45,7 +45,7 @@ services:
 
   db:
     image: mysql:8.0.16
-    container_name: db2
+    container_name: db
     env_file: .env
     volumes:
       - db_data:/var/lib/mysql
@@ -57,7 +57,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:4.7
-    container_name: phpmyadmin2
+    container_name: phpmyadmin
     env_file: .env
     environment:
       PMA_HOST: ${MYSQL_HOST}
