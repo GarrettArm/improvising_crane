@@ -16,16 +16,17 @@ docker-compose exec webapp drush config-import -y
 docker-compose logs -f
 ```
 
-   wait until the db container reports "ready for connections".  Exit log screen with `Ctrl-C`.
+   wait until the db container logs say "ready for connections".  Exit log screen with `Ctrl-C`.
    check that the database loaded by looking at the site in a browser.  It will error out until the database finishes loading.
 
 See the app at localhost:5150
+See the phpmyadmin at localhost:5151
 
 ## stopping the dev box
 
 ```
 ctrl-C
--or-
+-and/or-
 docker-compose stop 
 ```
 
