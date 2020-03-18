@@ -39,11 +39,11 @@ Revise the files in drupal8_themes.  It is a local folder synced to the containe
 
 Revise the files in drupal8_modules.  It is the home to our custom modules.  The folder syncs to the container's /drupal_app/web/modules
 
-## exporting config changes to drupal_sync/:
+## exporting config from container to drupal_sync/:
 
 `docker-compose exec webapp drush config-export -y`
 
-## importing config changes from drupal_sync/:
+## importing config changes from drupal_sync/ to container:
 
 `docker-composer exec webapp drush config-import -y`
 
