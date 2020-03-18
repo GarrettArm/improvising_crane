@@ -2,6 +2,8 @@ A Drupal8 build for randall library
 
 ## running the dev box
 
+All the docker-compose commands must be run from this folder.
+
 1) change the passwords in the file ".env"
 2) copy {path to drupal8_sandbox_db.sql} to ./db_shared/
 3) build the app & watch for completion
@@ -17,7 +19,7 @@ docker-compose logs -f
    wait until the db container reports "ready for connections".  Exit log screen with `Ctrl-C`.
    check that the database loaded by looking at the site in a browser.  It will error out until the database finishes loading.
 
-See the app at localhost:5000
+See the app at localhost:5150
 
 ## stopping the dev box
 

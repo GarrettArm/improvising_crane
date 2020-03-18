@@ -22,7 +22,7 @@ services:
     networks:
       - frontend_network
     ports:
-      - "5050:80"
+      - "5150:80"
     depends_on:
       - webapp
     restart: always
@@ -73,4 +73,4 @@ services:
       - db
     restart: always
     ports:
-      - "5051:80"
+      - "5151:80"
