@@ -43,7 +43,7 @@ Revise the files in drupal8_modules.  It is the home to our custom modules.  The
 
 `docker-compose exec webapp drush config-export -y`
 
-## importing config settings from drupal_sync/:
+## importing config changes from drupal_sync/:
 
 `docker-composer exec webapp drush config-import -y`
 
