@@ -20,6 +20,7 @@ docker-compose logs -f
    check that the database loaded by looking at the site in a browser.  It will error out until the database finishes loading.
 
 See the app at localhost:5150
+
 See the phpmyadmin at localhost:5151
 
 ## stopping the dev box
