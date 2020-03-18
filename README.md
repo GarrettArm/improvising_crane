@@ -33,7 +33,7 @@ docker-compose stop
 
 ## editing a theme file
 
-Revise the files in drupal8_themes.  It is a local folder synced to the container's /drupal_app/web/themes/contrib
+Revise the files in drupal8_themes.  The folder syncs to the container's /drupal_app/web/themes/contrib
 
 ## editing a module
 
