@@ -3,6 +3,7 @@ version: '3.7'
 volumes:
   db_data:
   drupal_data:
+  phpmyadmin_data:
 
 networks:
   db_network:
@@ -28,7 +29,7 @@ services:
     restart: always
 
   webapp:
-    image: localhost:5999/drupal8
+    image: lilting_seahawk
     container_name: webapp
     env_file: .env
     volumes:
@@ -68,7 +69,7 @@ services:
     networks:
       - db_network
     volumes:
-      - /sessions
+      - phpmyadmin_data:/sessions
     depends_on:
       - db
     restart: always

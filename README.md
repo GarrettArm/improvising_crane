@@ -1,5 +1,19 @@
 A Drupal8 build for randall library
 
+### Design principles
+
+#### Code up, Content down.
+
+Our production machine is the authoritative source for all Content.  That includes: the database, the sites/default/files.  The production site is complete on content.  End-users can add & revise the content there as they please.
+
+Our gitlab repo is the authoritative source for all code.  Code includes: theme files, custom modules, config files, recipe file (like composer.json & dockerfile & docker-compose).
+
+The gitlab repo can build our drupal8 site for dev and production, but it is sparce on content by default.  By default, it may have only one user and one ipso lorum of each kind of content.  (One could load all the production content on their dev box, if needed.)  None of the content on dev goes up to production.  Code changes go up to production though.  Changing versions of a module, for example, is code.  It happens on the dev box & gets pushed up to production.
+
+We'll have to communicate for the grey area of drupal config changes.  Meaning, if one makes a new type of page -- that could be done on production or dev.  That can be imported or exported from either direction & it might make sense to do either on a given day.
+
+On the first day of operation, all this plan goes out the window.
+
 ## running the dev box
 
 All the docker-compose commands must be run from this folder.
@@ -23,6 +37,11 @@ See the app at localhost:5150
 
 See the phpmyadmin at localhost:5151
 
+## to create a new admin user
+
+`docker-compose exec webapp drush user-create {some name} --mail="{some email}" --password="{some password}"`
+`docker-compose exec webapp drush user-add-role "administrator" {same name}`
+
 ## stopping the dev box
 
 ```
@@ -39,15 +58,15 @@ Revise the files in ./themes.  The folder syncs to the container's /drupal_app/w
 
 Revise the files in ./modules.  It is the home to our custom modules.  The folder syncs to the container's /drupal_app/web/modules
 
-## exporting config from container to drupal_sync/:
+## exporting config from container to drupal_sync/
 
 `docker-compose exec webapp drush config-export -y`
 
-## importing config changes from drupal_sync/ to container:
+## importing config changes from drupal_sync/ to container
 
 `docker-composer exec webapp drush config-import -y`
 
-## making changes to db & pushing to production:
+## making changes to db & pushing to production
 
 Reasoning:  Full production db dump is at some permanent file location.  Copy the production sql dump to db_shared, do only revisions to drupal that you want on production.  When finished, we will dump the database to an sqldump.
 
